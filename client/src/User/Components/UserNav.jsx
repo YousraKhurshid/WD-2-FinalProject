@@ -21,7 +21,7 @@ function UserNav() {
   return (
     <Navbar expand="lg" className="bg-light border albert-sans-regular" style={{ height: '5rem' }}>
       <Container className='navbar'>
-        <Link id='logo' style={{ fontSize: '25px' }} className='nav-link albert-sans-regular' to="/">Accerories & Fashion Dame</Link>
+        <Link id='logo' style={{ fontSize: '25px' }} className='nav-link albert-sans-regular' to="/">Accessories & Fashion Dame</Link>
         <Link id='logopic' className='nav-link border border-light rounded-circle img-fluid m-3' to="/"> <img style={{ width: '7vw', height: '15%' }} className="picture rounded-circle" src="../images/Monogram.jpg" alt="Logo" /> </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -32,7 +32,6 @@ function UserNav() {
               <Link id='user' className='d-flex nav-link mx-4 my-4 ' style={{ fontSize: '20px' }} to="/user"> <FaUserAlt size='20px' /> <h5 className='albert-sans-regular'>username</h5></Link>
             </div>
             <div>
-              <button className='nav-link mx-4 mt-4 logout-btn'> <FaUserAlt size='20px' /> Logout</button>
             </div>
             <Button className='m-3 btn btn-dark d-flex align-items-center' style={{ size: '5px' }} onClick={handleShowCart}><HiShoppingCart size='40px' />
               <span className="position-relative top-0 start-25 translate-middle badge rounded-pill bg-danger">

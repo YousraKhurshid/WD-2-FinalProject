@@ -37,5 +37,5 @@ app.get('*', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening on port wd-2-final-project.vercel.app:${port}`)
+  console.log(`Example app listening on port http://localhost:${port}`)
 })
