@@ -13,7 +13,7 @@ export default function Login() {
     e.preventDefault();
     const payload = { email, password };
     console.log(payload);
-    axios.post('http://localhost:1789/api/login', payload)
+    axios.post('wd-2-final-project.vercel.app:1789/api/login', payload)
       .then(json => {
         console.log(json.data);
         Cookies.set('token', json.data.token); 

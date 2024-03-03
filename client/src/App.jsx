@@ -125,7 +125,7 @@ export default function App() {
 //   const { state, dispatch } = useContext(GlobalContext)
 
 //   useEffect(() => {
-//     // axios.get('http://localhost:1789/api/getallusers')
+//     // axios.get('wd-2-final-project.vercel.app:1789/api/getallusers')
 //     //   .then
 //     console.log("Getting from Context", state.user.role)
 //   },[])
