@@ -15,12 +15,12 @@ app.use('/', express.static(clientpath))
 app.use(express.json())
 app.use(cors())
 app.use('/api', require('./user/router'))
-app.use('/api',require('./products/router'))
-// app.use('/api',require('./orders/router'))
-app.use('/api',require('./category/router'))
-app.use('/api',require('./brands/router'))
-app.use('/api',require('./user/router'))
-// app.use('/api',require('./mailer/router'))
+// app.use('/api',require('./products/router'))
+// // app.use('/api',require('./orders/router'))
+// app.use('/api',require('./category/router'))
+// app.use('/api',require('./brands/router'))
+// app.use('/api',require('./user/router'))
+// // app.use('/api',require('./mailer/router'))
 
 
 const db = async () => {
