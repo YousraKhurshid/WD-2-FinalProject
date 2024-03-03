@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 require('dotenv').config()
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); // Corrected require statement for mongoose
 const mongoURI = "mongodb+srv://Yousra0001:XpVmTMDD7VaIAlZk@cluster0.dtabvii.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 const port = process.env.SERVER_PORT
