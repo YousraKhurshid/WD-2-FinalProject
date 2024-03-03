@@ -1,6 +1,7 @@
 {
   "name": "yk-idara-4-6",
   "private": true,
+  "proxy" : "http://localhost:1789",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

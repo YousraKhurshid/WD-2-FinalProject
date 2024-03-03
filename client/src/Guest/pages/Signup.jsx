@@ -16,7 +16,7 @@ export default function Signup() {
     e.preventDefault();
     const payload = { email, password, username };
     console.log(payload);
-    axios.post('http://localhost:1789/api/signup', payload)
+    axios.post('/api/signup', payload)
       .then(json => {
         console.log(json.data);
       })
