@@ -1,0 +1,37 @@
+#logopic {
+    display: none;
+}
+#logo {
+    display: inline;
+
+}
+#userr {
+    display: none;
+}
+#user {
+    display: inline;
+
+}
+@media (max-width: 992px) {
+    #logopic{
+        display: inline;
+    }
+    #logo{
+        display: none;
+    }
+    #userr{
+        display: inline;
+    }
+    #user{
+        display: none;
+    }
+    .login {
+        border: none;       
+        display: flex;
+        size: 2rem;
+    }
+    
+    .login:hover {
+        background: grey;
+    }
+}
