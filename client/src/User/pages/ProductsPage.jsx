@@ -7,7 +7,7 @@ import ImageSection from '../Components/ImageSection'
 import { CiHeart } from "react-icons/ci";
 import { IoIosGitCompare } from "react-icons/io";
 import { CiShare2 } from "react-icons/ci";
-import { GlobalContext } from '../../Context/addtoCart/context'
+import { GlobalContext } from '../../LoginContext/context'
 
 
 
@@ -18,7 +18,6 @@ export default function ProductsPage() {
   
   const initialData= {
     counter: 1,
-    username : "Yousra" 
 
   }
   const myCallback = (state,action) => {
@@ -43,7 +42,6 @@ const[state,dispatch] = useReducer(myCallback,initialData)
   const [productQuantity, setproductQuantity] = useState(1)
   const { state: globalState, dispatch: globalDispatch } = useContext(GlobalContext);
 
-  // const [cart, setCart] = useState([]);
      
 
      const ratingChanged = (newRating) => {
@@ -199,7 +197,6 @@ const[state,dispatch] = useReducer(myCallback,initialData)
           }
           )
         }>-</button>
-            {/* {productQuantity} */}
             {state.counter}
             <button className="btn mx-4" onClick={ 
           () => dispatch (
