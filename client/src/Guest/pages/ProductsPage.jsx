@@ -1,120 +1,57 @@
-import React, { useEffect, useState, useReducer, useContext } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import axios from 'axios'
-import ReactStars from 'react-stars'
-import Swal from 'sweetalert2' 
-import ImageSection from '../Components/ImageSection'
-import { CiHeart } from "react-icons/ci";
-import { IoIosGitCompare } from "react-icons/io";
-import { CiShare2 } from "react-icons/ci";
-import { GlobalContext } from '../../Context/addtoCart/context'
-
-
-
-
-
 export default function ProductsPage() {
-
-  
-  const initialData= {
-    counter: 1,
-    username : "Yousra" 
-
-  }
-  const myCallback = (state,action) => {
-    switch (action.type) {
-      case "INCREMENT_COUNTER":
-            return {...state, counter : state.counter++ }
-      case "DECREMENT_COUNTER":
-            return {...state, counter : state.counter-- }
-      case "SET_USER":
-            return{...state, [action.payload.name] : action.payload.value}
-        default:
-          return state;
-
-    }
-  }
-const[state,dispatch] = useReducer(myCallback,initialData)
-       
-     const {productID} = useParams()
-     const [product, setProduct] = useState({})
-     const [review, setReview] = useState("")
-     const [ratingstar,setratingStar] = useState(0)
-  const [productQuantity, setproductQuantity] = useState(1)
+  const { productID } = useParams();
+  const [product, setProduct] = useState({});
+  const [review, setReview] = useState("");
+  const [ratingstar, setRatingStar] = useState(0);
+  const [productQuantity, setProductQuantity] = useState(1);
   const { state: globalState, dispatch: globalDispatch } = useContext(GlobalContext);
 
-  // const [cart, setCart] = useState([]);
-     
+  const ratingChanged = (newRating) => {
+    setRatingStar(newRating);
+  };
 
-     const ratingChanged = (newRating) => {
-     setratingStar(newRating)
-     }
-     const submitReview = () => {
-       const payload = {
-       productID : productID,
-       review : review,
-       rating : ratingstar
-       }
-       console.log(payload) 
-       Swal.fire({
-        title: 'Successfully Submitted!',
-        text: 'Thanks for reviewing our product',
-        icon: 'success',
-        confirmButtonText: 'Continue Shopping'
-       })
-  
-  
-       setReview('')
-       setratingStar(0)
-  
-  }
-  
+  const submitReview = () => {
+    const payload = {
+      productID: productID,
+      review: review,
+      rating: ratingstar
+    };
+    console.log(payload);
+    Swal.fire({
+      title: 'Successfully Submitted!',
+      text: 'Thanks for reviewing our product',
+      icon: 'success',
+      confirmButtonText: 'Continue Shopping'
+    });
 
+    setReview('');
+    setRatingStar(0);
+  };
 
-  
+  useEffect(() => {
+    axios.get(`https://dummyjson.com/products/${productID}`).then(json => setProduct(json.data));
+  }, [productID]);
 
- useEffect(()=>{
-    axios.get(`https://dummyjson.com/products/${productID}`).then(json=> setProduct(json.data))
+  const addToCart = () => {
+    const payload = {
+      ...product,
+      productQuantity: productQuantity,
+      totalPrice: product.price * productQuantity
+    };
 
- }, [])
- useEffect(() => {
-  setproductQuantity(state.counter);
- }, [state.counter]);
-  
- useEffect(() => {
-  // Retrieve cart data from localStorage
-  const cartData = localStorage.getItem('cart');
-  if (cartData) {
-    globalDispatch({ type: 'INITIALIZE_CART', payload: JSON.parse(cartData) });
-  }
-}, []);
+    globalDispatch({
+      type: "ADD_TO_CART",
+      cart: payload
+    });
 
-  
-  
- const AddToCart = () => {
-        
+    Swal.fire({
+      title: 'Added to Cart',
+      text: 'Check your Cart for Check Out',
+      icon: 'success',
+      confirmButtonText: 'Continue Shopping'
+    });
+  };
 
-  const payload = {
-    ...product,
-    productQuantity,
-    totalPrice : product.price * productQuantity
-  }
-
-  globalDispatch({
-    type: "ADD_TO_CART",
-    cart: payload
-  })
-  console.log(productQuantity)
-
-  
-  Swal.fire({
-    title: 'Added to Cart',
-    text: 'Check your Cart for Check Out',
-    icon: 'success',
-    confirmButtonText: 'Continue Shopping'
-  })
-
-}
 
     return (
       <div>
@@ -189,44 +126,12 @@ const[state,dispatch] = useReducer(myCallback,initialData)
             {productQuantity}
             <button className="btn btn-dark mx-3" onClick={() => setproductQuantity(productQuantity + 1)}>+</button>
         </div> */}
-        <div className="d-flex mx-5 mt-5">
-              <div className='border border-dark rounded-pill m-2 p-2 text-center' style={{ width: "18rem", height: "auto" }} >
-              <button className="btn mx-4" disabled={state.counter > 1 ? false : true} onClick={ 
-          () => dispatch (
-            {
-              type : "DECREMENT_COUNTER"
-
-          }
-          )
-        }>-</button>
-            {/* {productQuantity} */}
-            {state.counter}
-            <button className="btn mx-4" onClick={ 
-          () => dispatch (
-            {
-              type : "INCREMENT_COUNTER"
-
-          }
-          )
-        }>+</button>
-       </div>
-            {/* <div>
-              <input type='text' value={state.username} name= "username"
-               onChange={(e) => dispatch({
-                type : 'SET_USER',
-                payload : { 
-                  "name" : e.target.name,
-                  "value" : e.target.value
-                }
-              })}
-              />
-             
-              {state.username}
-            </div> */}
-
-          <button className='btn btn-dark rounded-pill m-1 albert-sans-regular' style={{width: "20rem", height: "3.6rem" }} onClick={AddToCart} > Add to Cart </button>
-
+     <div className="text-center my-3">
+        <button className="btn btn-dark mx-3" disabled={productQuantity > 1 ? false : true} onClick={() => setProductQuantity(prev => prev - 1)}>-</button>
+        {productQuantity}
+        <button className="btn btn-dark mx-3" onClick={() => setProductQuantity(prev => prev + 1)}>+</button>
             </div>
+            <button className='btn btn-dark rounded-pill m-1 albert-sans-regular' style={{ width: "20rem", height: "3.6rem" }} onClick={addToCart}> Add to Cart </button>
             <button className='btn btn-danger rounded-pill mx-5 my-2 albert-sans-regular' style={{width: "40rem", height: "3.6rem" }} onClick={AddToCart}>
               Buy Now
             </button>
