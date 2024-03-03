@@ -1,5 +1,5 @@
 const userSchema = new Schema({
-    // ... other fields
+
     role: {
       type: String,
       enum: ['user', 'admin', 'vender'], // You can define allowed roles here
@@ -7,6 +7,6 @@ const userSchema = new Schema({
     }
   });
   
-  const User = mongoose.model('User', userSchema);
+  const User = mongoose.model('user', userSchema);
   module.exports = User;
   

@@ -23,7 +23,7 @@ function NavigationBar() {
   return (
     <Navbar expand="lg" className="bg-light border albert-sans-regular">
       <Container className='navbar'>
-        <Link id='logo' style={{ fontSize: '25px' }} className='nav-link' to="/">Accerories & Fashion Dame</Link>
+        <Link id='logo' style={{ fontSize: '25px' }} className='nav-link' to="/">Accessories & Fashion Dame</Link>
         <Link id='logopic' className='nav-link border border-light rounded-circle img-fluid m-3' to="/"> <img style={{ width: '7vw', height: '15%' }} className="picture rounded-circle" src="../images/Monogram.jpg" alt="Logo" /> </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
