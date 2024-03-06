@@ -16,7 +16,7 @@ export default function CategoryPage() {
     }, [categoryName]);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/get-all-categories')
+        axios.get('http://localhost:1789/api/get-all-categories')
             .then(json => {
                 if (json.data.category) {
                     setCategories(json.data.category);

@@ -25,7 +25,7 @@ function CategoryModal() {
             getDownloadURL(snapshot.ref)
                 .then((url) => {
                     const payload = { CategoryName, CategoryImage: url }
-                    axios.post('http://localhost:8000/api/create-category', payload)
+                    axios.post('http://localhost:1789/api/create-category', payload)
                         .then((json) => {
                             setShow(false);
                         })
