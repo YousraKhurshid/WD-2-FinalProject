@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import { HiShoppingCart } from "react-icons/hi";
 import { FaUserAlt } from "react-icons/fa";
-import { GlobalContext } from '../../Context/addtoCart/context';
+import { GlobalContext } from '../../LoginContext/context';
 
 function NavigationBar() {
   const [showCart, setShowCart] = useState(false);

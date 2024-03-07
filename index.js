@@ -40,21 +40,13 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 const mongoose = require('mongoose');
-const mongoURI = process.env.MONGO_URI; // Make sure to define your MongoDB URI in your .env file
+const mongoURI = process.env.MONGO_URI;
 const cors = require('cors');
 const path = require('path');
 
-const port = process.env.SERVER_PORT || 3000; // Set a default port if SERVER_PORT is not defined
+const port = process.env.SERVER_PORT || 3000;
 
-// Define CORS options to allow requests only from specific origins
-const corsOptions = {
-  origin: ['https://wd-2-final-project.vercel.app/', 'http://localhost:1789'], // Replace with your allowed origins
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
-  allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
-};
-
-app.use(cors(corsOptions)); // Use the defined CORS options
-
+app.use(cors());
 app.use(express.json());
 
 const clientpath = path.join(__dirname, './Client/dist');
@@ -72,6 +64,20 @@ const db = async () => {
 }
 
 db();
+
+app.use(cookieParser());
+
+// Set cookies with proper SameSite attribute
+app.get('/', (req, res) => {
+  res.cookie('cookieName', 'cookieValue', {
+    sameSite: 'None', // Set SameSite attribute to 'None'
+    secure: true, // Mark the cookie as Secure
+    httpOnly: true, // Use HttpOnly attribute for added security
+  });
+
+  res.send('Cookie set successfully');
+});
+
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './Client/dist/index.html'));

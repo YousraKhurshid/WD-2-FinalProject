@@ -4,7 +4,6 @@ import App from './App.jsx'
 import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from 'react-router-dom';
-import CartContextProvider from './Context/addtoCart/context.jsx';
 import ContextProvider from './LoginContext/context.jsx';
 // import { createContext } from 'react';
 
@@ -20,9 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 <React.StrictMode>
     <ContextProvider>
       <BrowserRouter>
-      <CartContextProvider>
         <App/>
-        </CartContextProvider>
         </BrowserRouter>
     </ContextProvider>
 </React.StrictMode> )

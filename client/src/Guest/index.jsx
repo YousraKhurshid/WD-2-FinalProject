@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Products from './pages/Products';
 import CategoryPage from './pages/CategoryPage';
+import ProductsPage from './pages/ProductsPage';
 export default function Guest() {
   return (
     <Routes>
@@ -18,6 +19,7 @@ export default function Guest() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/products/category/:categoryName" element={<CategoryPage />} />
       <Route path="/products" element={<Products />} />
+      <Route path="/productsPage" element={<ProductsPage />} />
       <Route path="*" element={<Navigate to={'/login'} replace="true" />} />
     </Routes>
   )
